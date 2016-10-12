@@ -32,12 +32,12 @@
     </nav>
 </div>
 <div class="ask-content">
-    <form action="">
+    <form action="#">
         <div class="form-group">
             <textarea class="form-control" name="" id="" cols="30" rows="10" placeholder="请详细描述你的问题"></textarea>
         </div>
-        <button class="btn btn-block btn-success">提交问题</button>
     </form>
+    <button class="btn btn-block btn-success">提交问题</button>
 </div>
 </body>
 <script type="text/javascript">
@@ -49,11 +49,14 @@
         $('button').click(function () {
             var name = $.cookie('user')
             var ask = $('textarea').val();
+            console.log(name);
             if (ask.length == '0') {
                 $.popup('提交的内容不能为空，请输入');
             } else {
-                $.post('/Jqask', 'name=' + name + '&ask=' + ask, function () {
-
+                $.post('/Jqask', 'name=' + name + '&ask=' + ask, function (res,statsuText,xhr) {
+                    if(statsuText=='success'){
+                        location.href='index.html';
+                    }
                 })
             }
         })

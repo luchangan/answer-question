@@ -114,11 +114,22 @@
         } else {
             $('span:eq(4)').html($.cookie('user'))
         }
+        (function () {
+            $.post('Jqindex/ask', function (res, statusText, xhr) {
+                if (statusText == 'success') {
+                    var ask = res;
+//                    console.log(ask[1].name);
+                    for (i in ask) {
+                        $('.messages').append('<li class="ask">' + '<img src="" class="user-photo">' + '<h2 class="h2-title">' + ask[i].name + '</h2>' + '<p class="ptext">' + ask[i].ask + '</p>' + '<p class="ptime">' + ask[i].time + '</p>' + '</li>')
+                    }
+                }
+            })
+        })()
         $('span:eq(0)').click(function () {
-            if($.cookie('user')=='null'){
-                location.href='register.html'
-            }else{
-                location.href='request.html';
+            if ($.cookie('user') == 'null') {
+                location.href = 'register.html'
+            } else {
+                location.href = 'request.html';
             }
         })
         $('.user-info a:first-child').click(function () {

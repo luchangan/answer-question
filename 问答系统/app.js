@@ -65,6 +65,7 @@ app.post('/jqpost', function (req, res) {
 app.post('/Jqindex/post', function (req, res) {
     console.log('服务器连通')
     var user = req.body;
+
     fs.readFile('user.txt', function (err, data) {
         var str = data.toString().trim();
         var obj = JSON.parse('[' + str + ']');
@@ -80,16 +81,44 @@ app.post('/Jqindex/post', function (req, res) {
     })
 })
 
-// 提交问题
-app.post('/Jqask', function () {
-    fs.readFile('messages.txt', function () {
-
+// 主页读取问题
+app.post('/Jqindex/ask', function (req, res) {
+    fs.readFile('messages.txt', function (err, data) {
+        var ask = data.toString().trim();
+        var askStr = JSON.parse('[' + ask + ']')
+        console.log(askStr);
+        res.status(200).send(askStr)
     })
 })
 
+// 提交问题
+app.post('/Jqask', function (req,res) {
+    req.body.time = new Date().getTime();
+    var ask = req.body.ask;
+    var reg1 = /</mg;
+    var reg2 = />/mg;
+    ask = ask.replace(reg1,'&lt;');
+    ask = ask.replace(reg2,'&gt;');
+    var user = req.body;
+//    console.log(user);
+    var userStr = JSON.stringify(user);
+    fs.readFile('messages.txt', function (err,data) {
+        var ask = data.toString().trim();
+        var askStr = JSON.parse('[' + ask + ']')
+        var douhao = ask.length > 0 ? ',' : '';
+
+        fs.appendFile('messages.txt',douhao+userStr, function (err) {
+            res.status(200).send('aaa');
+        })
+    })
+})
+
+
+
 // 上传图片
 app.post('/JqPhoto', upload.single('photo'), function (req, res) {
-    console.log(req.body);
+//    console.log(req.body);
+    res.status(200).send('成功')
 })
 
 app.listen(3000, function(){
