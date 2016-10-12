@@ -46,17 +46,17 @@
             location.href = 'index.html';
         })
         console.log($.cookie('user'));
-//        $('button').click(function () {
-//            var name = $.cookie('user')
-//            var ask = $('textarea').val();
-//            if (ask.length == '0') {
-//                $.popup('提交的内容不能为空，请输入');
-//            } else {
-//                $.post('/Jqask', 'name=' + name + '&ask=' + ask, function () {
-//
-//                })
-//            }
-//        })
+        $('button').click(function () {
+            var name = $.cookie('user')
+            var ask = $('textarea').val();
+            if (ask.length == '0') {
+                $.popup('提交的内容不能为空，请输入');
+            } else {
+                $.post('/Jqask', 'name=' + name + '&ask=' + ask, function () {
+
+                })
+            }
+        })
     })
 </script>
 </html>

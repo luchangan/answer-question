@@ -131,7 +131,7 @@
                     })
                 } else {
                     $.popup('欢迎您回来，'+name, function () {
-                        $.cookie('user',name,{expires:1,path:'/'});
+                        $.cookie('user',name,{path:'/'});
                         location.href = 'index.html';
                     })
                 }
