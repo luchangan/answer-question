@@ -28,7 +28,7 @@
         <!--<div class="title">注册</div>-->
         <div class="user">
             <span><span class="glyphicon glyphicon-plus"></span>&nbsp;提问&nbsp;</span>
-            <span class="userName"><span class="glyphicon glyphicon-user"></span>&nbsp;卢鹏程</span>
+            <span class="userName"><span class="glyphicon glyphicon-user"></span>&nbsp;<span>卢鹏程</span></span>
         </div>
         <div class="user-info">
             <a href="javascript:;">个人资料</a>
@@ -112,9 +112,13 @@
             location.href='personal.html';
         })
         $('.user-info a:last-child').click(function (event) {
-            $.popup('确定退出么')
+            $.popup('确定退出么',function(){
+                $.cookie('user',null)
+                location.href='index.html';
+            })
         })
-        console.log($.cookie.user);
+        console.log($.cookie('user'));
+        $('span:eq(4)').html($.cookie('user'))
         console.log($('span:eq(2)').html())
     })
 </script>
