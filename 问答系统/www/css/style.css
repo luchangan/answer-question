@@ -29,6 +29,7 @@
     left: 15px;
     font-size: 18px;
     line-height: 20px;
+    cursor: pointer;
 }
 
 .nav .user {
@@ -45,6 +46,7 @@
     font-size: 18px;
     line-height: 50px;
     text-align: center;
+    cursor: pointer;
 }
 
 /*用户下拉菜单*/
