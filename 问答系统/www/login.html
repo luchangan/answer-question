@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>登录页面</title>
+    <meta charset="utf-8">
+    <meta name="Keywords " content="$SiteKeywords "/>
+    <meta name="Description " content="$SiteDescription "/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,intital-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet " type="text/css " href="css/globle.css "/>
+    <link rel="stylesheet " type="text/css " href="css/style.css "/>
+    <script src='js/jquery-2.0.3.js'></script>
+    <script src='js/jquery.cookie.js'></script>
+    <script src='js/index.js'></script>
+    <style>
+        ul {
+            /*background: #000;*/
+            width: 100%;
+            height: 50px;
+        }
+
+        li {
+            line-height: 55px;
+        }
+
+        li:nth-of-type(1) {
+            float: left;
+        }
+
+        li:nth-of-type(3) {
+            float: right;
+        }
+
+        li:nth-of-type(2) {
+            position: absolute;
+            left: 49%;
+            text-align: center;
+        }
+
+        li span {
+            font-size: 20px;
+            color: #cccccc;
+            line-height: 50px;
+            cursor: pointer;
+        }
+        .container input{
+            width:100%;
+            height:40px;
+            border: none;
+            border:1px solid #cccccc;
+            border-radius: 5px;
+            padding-left: 10px;
+            font-size: 15px;
+        }
+        .container button{
+            width:100%;
+            height:40px;
+            border:none;
+            border:1px solid #cccccc;
+            border-radius: 5px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="h50"></div>
+<div id="nav">
+    <nav class="nav">
+        <div class="logo"><span class="glyphicon glyphicon-chevron-left"></span></div>
+        <div class="title">登录</div>
+        <div class="user">
+            <span><span class="glyphicon glyphicon-plus-sign"></span></span>
+        </div>
+    </nav>
+</div>
+<div class="login-content">
+    <form action="#" class="">
+        <div class="form-group">
+            <input type="text" name="name" placeholder="请输入你的昵称" required/><span></span>
+        </div>
+        <div class="form-group">
+            <input type="password" name="password" placeholder="请输入你的密码" required/><span></span>
+        </div>
+    </form>
+    <button class="btn btn-block btn-success">登录</button>
+</div>
+</body>
+<script type="text/javascript">
+    $(function () {
+        $('span:eq(2)').click(function () {
+            location.href = 'index.html';
+        })
+        $('input:eq(0)').focus(function () {
+            $('span:eq(3)').html('请输入3-8位字符，包括汉字,字母。').css('color', 'blue');
+        })
+        $('input:eq(0)').blur(function () {
+            var reg = /^[A-z\u4e00-\u9fff]{2,8}$/;
+            var txt1 = $('input:eq(0)').val();
+            if (reg.test(txt1)) {
+                $('span:eq(3)').html('账号符合规则').css('color', 'green')
+            } else {
+                $('span:eq(3)').html('账号不符合规则，请重新输入').css('color', 'red')
+            }
+        });
+        $('input:eq(1)').focus(function () {
+            $('span:eq(4)').html('请输入6-16位字符，包括数字,字母。').css('color', 'blue');
+        });
+        $('input:eq(1)').blur(function () {
+            var reg = /^[A-z0-9]{5,15}$/;
+            var txt1 = $('input:eq(1)').val();
+            if (reg.test(txt1)) {
+                $('span:eq(4)').html('密码符合规则').css('color', 'green')
+            } else {
+                $('span:eq(4)').html('密码不符合规则，请重新输入').css('color', 'red')
+            }
+        });
+        $('button').click(function () {
+            var name = $('input:eq(0)').val();
+            var password = $('input:eq(1)').val();
+            console.log('账号：' + name)
+            console.log('密码：' + password)
+            $.post('/Jqindex/post','name=' + name + '&password=' + password, function (response, statusText, xhr) {
+                if (response == '0') {
+                    alert('对不起，该用户不存在，请注册。')
+                } else {
+                    $.cookie('user',name,{expires:1,path:'/'});
+                    alert('恭喜你，登陆成功')
+                    location.href = 'index2.html';
+                }
+            })
+        })
+    })
+</script>
+</html>
