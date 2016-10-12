@@ -114,7 +114,8 @@
         $('.user-info a:last-child').click(function (event) {
             $.popup('确定退出么',function(){
                 $.cookie('user',null)
-                location.href='index.html';
+                $('span:eq(4)').html('登录')
+                location.href='index2.html';
             })
         })
         console.log($.cookie('user'));

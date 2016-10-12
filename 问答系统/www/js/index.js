@@ -1,11 +1,15 @@
 $(function () {
     // 控制下拉菜单位置
     $('body').on('click', '.userName', function () {
-        $('.user-info').css({
-            top: 50 + 'px',
-            right: -10 + 'px'
-        })
-        $('.user-info').slideToggle(200);
+        if ($.cookie('user') == null) {
+
+        } else {
+            $('.user-info').css({
+                top: 50 + 'px',
+                right: -10 + 'px'
+            })
+            $('.user-info').slideToggle(200);
+        }
     })
 });
 // 当尺寸发生改变的时候
