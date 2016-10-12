@@ -81,9 +81,11 @@ app.post('/Jqindex/post', function (req, res) {
 })
 
 // 提交问题
-//app.post('/Jqask', function () {
-//
-//})
+app.post('/Jqask', function () {
+    fs.readFile('messages.txt', function () {
+
+    })
+})
 
 // 上传图片
 app.post('/JqPhoto', upload.single('photo'), function (req, res) {
