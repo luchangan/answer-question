@@ -4,11 +4,8 @@ const bodyParser = require('body-parser');
 
 const multer = require('multer');
 
-// 引入nodeJs 文件系统模块
 const fs = require('fs');
-// 生成一个express模块
 const app = express();
-// 生成一个multer对象
 const form = multer();
 app.use(express.static('www'));
 
@@ -25,10 +22,8 @@ var storage = multer.diskStorage({
     }
 })
 
-// 第二个参数的名字需要和上边的变量相同
 var upload = multer({ storage: storage })
 
-// 使用bodyParser 过滤生成 对提交值进行url编码
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', function(req, res){
@@ -38,6 +33,8 @@ app.get('/', function(req, res){
 // 注册页面
 app.post('/jqpost', function (req, res) {
     console.log('服务器连通');
+    req.body.ip =req.ip;
+    req.body.time = new Date().getTime();
     var user = req.body;
     var userStr = JSON.stringify(user);
     fs.readFile('user.txt', function (err, data) {

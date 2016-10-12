@@ -156,15 +156,15 @@
             }
         });
         $('input:eq(5)').focus(function () {
-            $('span:eq(4)').html('请输入您的邮箱').css('color', 'green')
+            $('span:eq(6)').html('请输入您的邮箱').css('color', 'green')
         })
         $('input:eq(5)').blur(function () {
             var reg = /^[A-z\d\.]+@([A-z\d\-]+\.)+([A-z]+\.)?[A-z\u4E00-\u9FFF]+$/;
             var txt1 = $('input:eq(5)').val();
             if (reg.test(txt1)) {
-                $('span:eq(4)').html('邮箱正确').css('color', 'green')
+                $('span:eq(6)').html('邮箱正确').css('color', 'green')
             } else {
-                $('span:eq(4)').html('邮箱格式错误,请重新输入').css('color', 'red')
+                $('span:eq(6)').html('邮箱格式错误,请重新输入').css('color', 'red')
             }
         })
         $('button').click(function () {
