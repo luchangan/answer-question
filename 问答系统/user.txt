@@ -1,1 +1,1 @@
-﻿{"name":"admin","password":"123456","sex":"先生","email":"1120336291@qq.com","course":"全能懂么","ip":"::ffff:192.168.3.249","time":1476258920943}
+﻿{"name":"admin","password":"123456","sex":"先生","email":"1120336291@qq.com","course":"全能懂么","ip":"::ffff:192.168.3.249","time":1476258920943},{"name":"卢鹏程","password":"123456","sex":"先生","email":"120@qq.com","course":"HTML5","ip":"::ffff:192.168.3.249","time":1476260497348}

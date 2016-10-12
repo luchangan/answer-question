@@ -96,8 +96,10 @@
             <input class="input" type="password" name="password" placeholder="请再次输入密码" required/><span></span>
         </div>
         <div class="form-group">
-            <input type="radio" name="sex" id="y" value="先生" required/><label style="margin-left: 5px" for="y">先生</label><br/>
-            <input type="radio" name="sex" id="x" value="女士" required/><label style="margin-left: 5px" for="x">女生</label>
+            <input type="radio" name="sex" id="y" value="先生" required/><label style="margin-left: 5px"
+                                                                              for="y">先生</label><br/>
+            <input type="radio" name="sex" id="x" value="女士" required/><label style="margin-left: 5px"
+                                                                              for="x">女生</label>
         </div>
         <div class="form-group">
             <input class="input" type="email" name="email" placeholder="请输入电子邮箱地址" required/><span></span>
@@ -169,32 +171,34 @@
         })
         $('button').click(function () {
             var sex = $('input:radio[name="sex"]:checked').val();
-            if (sex == null) {
-                $.popup('请勾选你的性别')
-            } else {
-                var course = $('option:selected').val();
-                var name = $('input:eq(0)').val();
-                var password = $('input:eq(1)').val();
-                var email = $('input:eq(5)').val();
-                var txt2 = $('input:eq(1)').val();
-                var txt3 = $('input:eq(2)').val();
+            var course = $('option:selected').val();
+            var name = $('input:eq(0)').val();
+            var password = $('input:eq(1)').val();
+            var email = $('input:eq(5)').val();
+            var txt1 = $('input:eq(0)').val();
+            var txt2 = $('input:eq(1)').val();
+            var txt3 = $('input:eq(2)').val();
+            if (txt2 == txt3 && txt2.length != 0 && txt1.length != 0) {
                 console.log(course);
-                if (txt2 == txt3 && txt2.length != 0) {
-                    $.post('/jqpost', 'name=' + name + '&password=' + password +'&sex='+sex+ '&email=' + email+'&course='+course, function (response, statusText, xhr) {
+                if (sex == null) {
+                    $.popup('请勾选你的性别')
+                } else {
+                    $.post('/jqpost', 'name=' + name + '&password=' + password + '&sex=' + sex + '&email=' + email + '&course=' + course, function (response, statusText, xhr) {
                         if (response == '错误') {
                             $.popup('对不起，该用户已存在，请重新注册。', function () {
-                                location.href='register.html';
+                                location.href = 'register.html';
                             })
                         } else {
-                            $.popup('恭喜你，'+name+'注册成功，欢迎登录', function () {
-                                $.cookie('user',name,{expires:1,path:'/'});
+                            $.popup('恭喜你，' + name + '注册成功，欢迎登录', function () {
+                                $.cookie('user', name, {expires: 1, path: '/'});
                                 location.href = 'login.html';
                             })
                         }
                     })
-                } else {
-                    alert('对不起，密码不可以为空');
+
                 }
+            } else {
+                $.popup('用户名和密码不能为空');
             }
         })
     })
