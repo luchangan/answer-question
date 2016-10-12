@@ -175,10 +175,9 @@
             var name = $('input:eq(0)').val();
             var password = $('input:eq(1)').val();
             var email = $('input:eq(5)').val();
-            var txt1 = $('input:eq(0)').val();
             var txt2 = $('input:eq(1)').val();
             var txt3 = $('input:eq(2)').val();
-            if (txt2 == txt3 && txt2.length != 0 && txt1.length != 0) {
+            if (txt2 == txt3 && txt2.length != 0 && name.length != 0 && email.length != 0) {
                 console.log(course);
                 if (sex == null) {
                     $.popup('请勾选你的性别')

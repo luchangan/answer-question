@@ -87,8 +87,7 @@ app.post('/Jqindex/post', function (req, res) {
 
 // 上传图片
 app.post('/JqPhoto', upload.single('photo'), function (req, res) {
-    console.log('上传图片');
-    res.status(200).send(file.originalname)
+    console.log(req.body);
 })
 
 app.listen(3000, function(){

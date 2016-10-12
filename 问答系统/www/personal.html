@@ -30,22 +30,36 @@
     </nav>
 </div>
 <div class="personal-content">
-    <form action="/JpPhoto" enctype="multipart/form-data">
+    <form action="/JpPhoto" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <input type="text" name="filename"/>
+        </div>
         <div class="form-group">
             <input type="file" name="photo" required accept=".png,.jpg,.gif"/>
         </div>
         <div class="form-group">
-            <input type="submit"/>
+            <input type="submit" class="btn btn-block btn-success" value="提交头像"/>
         </div>
     </form>
-    <button class="btn btn-block btn-success">提交回答</button>
 </div>
 </body>
 <script type="text/javascript">
-    $(function () {
-        $.post('/JqPhoto', function () {
-
-        })
-    })
+//    $(function () {
+//        $('form').submit(function (ev) {
+//            ev.preventDefault();
+//            var data = $(this).serialize();
+//            console.log(data);
+//            $.post('/JqPhoto', data, function (res, statusText, xhr) {
+//                if (statusText == 'success') {
+//                    console.log(res);
+//                }
+//            })
+//        })
+//        $('input[type=button]').click(function () {
+//
+//            var data = new FormData();
+//            data.append('photo', '');
+//        })
+//    })
 </script>
 </html>

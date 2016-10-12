@@ -126,13 +126,13 @@
             console.log('密码：' + password)
             $.post('/Jqindex/post','name=' + name + '&password=' + password, function (response, statusText, xhr) {
                 if (response == '错误') {
-                    $.popup('对不起，该用户不存在，请注册。', function () {
+                    $.popup('对不起，用户名或密码。', function () {
                         location.href='register.html';
                     })
                 } else {
                     $.popup('欢迎您回来，'+name, function () {
                         $.cookie('user',name,{expires:1,path:'/'});
-                        location.href = 'index2.html';
+                        location.href = 'index.html';
                     })
                 }
             })
