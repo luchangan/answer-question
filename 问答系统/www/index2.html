@@ -108,18 +108,30 @@
 </body>
 <script type="text/javascript">
     $(function () {
+        $('span:eq(0)').click(function () {
+            if($.cookie('user')=='null'){
+                location.href='register.html'
+            }else{
+                location.href='request.html';
+            }
+        })
         $('.user-info a:first-child').click(function () {
-            location.href='personal.html';
+            location.href = 'personal.html';
         })
         $('.user-info a:last-child').click(function (event) {
-            $.popup('确定退出么',function(){
-                $.cookie('user',null)
+            $.popup('确定退出么', function () {
+                $.cookie('user', null)
                 $('span:eq(4)').html('登录')
-                location.href='index2.html';
+                location.href = 'index2.html';
             })
         })
         console.log($.cookie('user'));
-        $('span:eq(4)').html($.cookie('user'))
+        if ($.cookie('user') == 'null') {
+            $('span:eq(4)').html('登录')
+        } else {
+            $('span:eq(4)').html($.cookie('user'))
+        }
+
         console.log($('span:eq(2)').html())
     })
 </script>

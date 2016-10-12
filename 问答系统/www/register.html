@@ -11,7 +11,10 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet " type="text/css " href="css/globle.css "/>
     <link rel="stylesheet " type="text/css " href="css/style.css "/>
+    <link rel="stylesheet " type="text/css " href="css/popupInsert.css"/>
     <script src='js/jquery-2.0.3.js'></script>
+    <script src='js/jquery.cookie.js'></script>
+    <script src='js/popupInsert.js'></script>
     <script src='js/index.js'></script>
     <style>
         ul {
@@ -178,11 +181,16 @@
                 console.log(job);
                 if (txt2 == txt3 && txt2.length != 0) {
                     $.post('/jqpost', 'name=' + name + '&password=' + password +'&sex='+sex+ '&email=' + email+'&job='+job, function (response, statusText, xhr) {
-                        if (response == '0') {
-                            alert('对不起，该用户已存在，请重新注册。')
+                        if (response == '错误') {
+//                            alert('对不起，该用户已存在，请重新注册。')
+                            $.popup('对不起，该用户已存在，请重新注册。', function () {
+                                location.href='register.html';
+                            })
                         } else {
-                            alert('恭喜你，注册成功，欢迎登陆')
-                            location.href = 'login.html';
+                            $.popup('恭喜你，注册成功，欢迎登录', function () {
+                                $.cookie('user',name,{expires:1,path:'/'});
+                                location.href = 'login.html';
+                            })
                         }
                     })
                 } else {

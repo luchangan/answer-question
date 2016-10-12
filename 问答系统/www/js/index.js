@@ -1,8 +1,8 @@
 $(function () {
     // 控制下拉菜单位置
     $('body').on('click', '.userName', function () {
-        if ($.cookie('user') == null) {
-
+        if ($.cookie('user') == 'null') {
+            location.href='login.html';
         } else {
             $('.user-info').css({
                 top: 50 + 'px',

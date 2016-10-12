@@ -11,8 +11,10 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet " type="text/css " href="css/globle.css "/>
     <link rel="stylesheet " type="text/css " href="css/style.css "/>
+    <link rel="stylesheet " type="text/css " href="css/popupInsert.css"/>
     <script src='js/jquery-2.0.3.js'></script>
     <script src='js/jquery.cookie.js'></script>
+    <script src='js/popupInsert.js'></script>
     <script src='js/index.js'></script>
     <style>
         ul {
@@ -91,7 +93,7 @@
 <script type="text/javascript">
     $(function () {
         $('span:eq(2)').click(function () {
-            location.href = 'index.html';
+            location.href = 'register.html';
         })
         $('input:eq(0)').focus(function () {
             $('span:eq(3)').html('请输入3-8位字符，包括汉字,字母。').css('color', 'blue');
@@ -123,12 +125,15 @@
             console.log('账号：' + name)
             console.log('密码：' + password)
             $.post('/Jqindex/post','name=' + name + '&password=' + password, function (response, statusText, xhr) {
-                if (response == '0') {
-                    alert('对不起，该用户不存在，请注册。')
+                if (response == '错误') {
+                    $.popup('对不起，该用户不存在，请注册。', function () {
+                        location.href='register.html';
+                    })
                 } else {
-                    $.cookie('user',name,{expires:1,path:'/'});
-                    alert('恭喜你，登陆成功')
-                    location.href = 'index2.html';
+                    $.popup('恭喜你，登录成功', function () {
+                        $.cookie('user',name,{expires:1,path:'/'});
+                        location.href = 'index2.html';
+                    })
                 }
             })
         })

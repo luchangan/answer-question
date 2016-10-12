@@ -48,14 +48,13 @@ app.post('/jqpost', function (req, res) {
                 isIn = true;
             }
         });
-        // 判断该用户存在
         if (isIn) {
-            res.status(200).send(0)
+            res.status(200).send('错误')
         } else {
             var douhao = usersStr.length > 0 ? ',' : '';
             fs.appendFile('user.txt', douhao + userStr, function (err) {
                 if (err) {
-                    res.status(200).send(0)
+                    res.status(200).send('错误')
                 } else {
                     res.status(200).send('<p style="color:green">恭喜你' + ' ' + req.body.account + ' ' + '注册成功</p>')
                 }
@@ -77,7 +76,7 @@ app.post('/Jqindex/post', function (req, res) {
         if (isIn) {
             res.status(200).send('<p style="color:green">登陆成功</p>')
         } else {
-            res.status(200).send(0)
+            res.status(200).send('错误')
         }
     })
 })
