@@ -130,7 +130,7 @@
                         location.href='register.html';
                     })
                 } else {
-                    $.popup('恭喜你，登录成功', function () {
+                    $.popup('欢迎您回来，'+name, function () {
                         $.cookie('user',name,{expires:1,path:'/'});
                         location.href = 'index2.html';
                     })

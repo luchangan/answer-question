@@ -178,7 +178,7 @@
                 var email = $('input:eq(5)').val();
                 var txt2 = $('input:eq(1)').val();
                 var txt3 = $('input:eq(2)').val();
-                console.log(job);
+                console.log(course);
                 if (txt2 == txt3 && txt2.length != 0) {
                     $.post('/jqpost', 'name=' + name + '&password=' + password +'&sex='+sex+ '&email=' + email+'&course='+course, function (response, statusText, xhr) {
                         if (response == '错误') {
@@ -186,7 +186,7 @@
                                 location.href='register.html';
                             })
                         } else {
-                            $.popup('恭喜你，注册成功，欢迎登录', function () {
+                            $.popup('恭喜你，'+name+'注册成功，欢迎登录', function () {
                                 $.cookie('user',name,{expires:1,path:'/'});
                                 location.href = 'login.html';
                             })
