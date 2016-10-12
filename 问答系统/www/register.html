@@ -170,9 +170,9 @@
         $('button').click(function () {
             var sex = $('input:radio[name="sex"]:checked').val();
             if (sex == null) {
-                alert('请勾选您的性别')
+                $.popup('请勾选你的性别')
             } else {
-                var job = $('option').val();
+                var job = $('option:selected').val();
                 var name = $('input:eq(0)').val();
                 var password = $('input:eq(1)').val();
                 var email = $('input:eq(5)').val();
