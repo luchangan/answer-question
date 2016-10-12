@@ -182,7 +182,6 @@
                 if (txt2 == txt3 && txt2.length != 0) {
                     $.post('/jqpost', 'name=' + name + '&password=' + password +'&sex='+sex+ '&email=' + email+'&course='+course, function (response, statusText, xhr) {
                         if (response == '错误') {
-//                            alert('对不起，该用户已存在，请重新注册。')
                             $.popup('对不起，该用户已存在，请重新注册。', function () {
                                 location.href='register.html';
                             })

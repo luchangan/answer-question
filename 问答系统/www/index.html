@@ -94,11 +94,17 @@
 </main>
 </body>
 <script type="text/javascript">
-    $('span').click(function () {
-        $.popup('请先登录', function () {
-            location.href = 'login.html';
-        })
+    $(function () {
+        $('span:eq(0)').click(function () {
+            $.popup('请先登录', function () {
+                location.href = 'login.html';
+            })
 
+        })
+        $('span:eq(2)').click(function () {
+            location.href='login.html';
+        })
     })
+
 </script>
 </html>
