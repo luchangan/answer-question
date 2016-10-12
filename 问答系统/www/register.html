@@ -172,7 +172,7 @@
             if (sex == null) {
                 $.popup('请勾选你的性别')
             } else {
-                var job = $('option:selected').val();
+                var course = $('option:selected').val();
                 var name = $('input:eq(0)').val();
                 var password = $('input:eq(1)').val();
                 var email = $('input:eq(5)').val();
@@ -180,7 +180,7 @@
                 var txt3 = $('input:eq(2)').val();
                 console.log(job);
                 if (txt2 == txt3 && txt2.length != 0) {
-                    $.post('/jqpost', 'name=' + name + '&password=' + password +'&sex='+sex+ '&email=' + email+'&job='+job, function (response, statusText, xhr) {
+                    $.post('/jqpost', 'name=' + name + '&password=' + password +'&sex='+sex+ '&email=' + email+'&course='+course, function (response, statusText, xhr) {
                         if (response == '错误') {
 //                            alert('对不起，该用户已存在，请重新注册。')
                             $.popup('对不起，该用户已存在，请重新注册。', function () {

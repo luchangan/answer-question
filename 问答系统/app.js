@@ -35,6 +35,7 @@ app.get('/', function(req, res){
   console.log('这是根目录');
 })
 
+// 注册页面
 app.post('/jqpost', function (req, res) {
     console.log('服务器连通');
     var user = req.body;
@@ -63,6 +64,7 @@ app.post('/jqpost', function (req, res) {
     })
 })
 
+// 登录页面
 app.post('/Jqindex/post', function (req, res) {
     console.log('服务器连通')
     var user = req.body;
@@ -81,6 +83,12 @@ app.post('/Jqindex/post', function (req, res) {
     })
 })
 
+// 提交问题
+//app.post('/Jqask', function () {
+//
+//})
+
+// 上传图片
 app.post('/JqPhoto', upload.single('photo'), function (req, res) {
     console.log('上传图片');
     res.status(200).send(file.originalname)
