@@ -67,13 +67,12 @@
 <script type="text/javascript">
     $(function () {
         console.log($.cookie('user'));
-        if ($.cookie('user') == 'null') {
-            $('span:eq(4)').html('登录')
-        } else {
-            $('span:eq(4)').html($.cookie('user'))
-        }
-
         (function () {
+            if ($.cookie('user')) {
+                $('span:eq(4)').html($.cookie('user'))
+            } else {
+                $('span:eq(4)').html('登录')
+            }
             $.post('Jqindex/ask', function (res, statusText, xhr) {
                 if (statusText == 'success') {
                     console.log(res.data);
@@ -104,10 +103,10 @@
             })
         })()
         $('span:eq(0)').click(function () {
-            if ($.cookie.length == 0) {
-                location.href = 'register.html'
-            } else {
+            if ($.cookie('user')) {
                 location.href = 'request.html';
+            } else {
+                location.href = 'register.html'
             }
         })
         $('.user-info a:first-child').click(function () {

@@ -43,7 +43,10 @@
 </body>
 <script type="text/javascript">
     $(function () {
-        $('span').click(function () {
+        $('span:eq(0)').click(function () {
+            history.back();
+        })
+        $('span:eq(1)').click(function () {
             location.href = 'index.html';
         })
         console.log($.cookie('user'));
