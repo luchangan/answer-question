@@ -21,3 +21,21 @@ $(function () {
 //        left: left + 'px'
 //    })
 //}
+function formatTime(val) {
+    var time = new Date(val);
+    var year = time.getFullYear();
+    var month = time.getMonth() + 1;
+    var day = time.getDate();
+    var hour = time.getHours();
+    var minute = time.getMinutes();
+
+    month = month < 10 ? "0" + month : month;
+    day = day < 10 ? "0" + day : day;
+    minute = minute < 10 ? "0" + minute : minute;
+    return (year + '-' + month + '-' + day + ' ' + hour + ':' + minute);
+}
+function formatContent(str){
+    val.replace(/</g,'&lt;')
+    val.replace(/>/g,'&gt;')
+    return str;
+}

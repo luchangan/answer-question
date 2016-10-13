@@ -51,11 +51,17 @@
                 contentType: false,
                 processData: false,
                 type: 'POST',
-                success: function () {
+                success: function (res, statusText, xhr) {
                     console.log('chenggong')
-                    $.popup('头像上传成功', function () {
-                        location.href='index.html';
-                    })
+                    if (res == '成功') {
+                        $.popup('头像上传成功', function () {
+                            location.href = 'index.html';
+                        })
+                    }else{
+                        $.popup('头像上传失败', function () {
+                            location.href = 'personal.html';
+                        })
+                    }
                 }
             })
         })

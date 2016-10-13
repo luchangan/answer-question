@@ -24,7 +24,7 @@
 <div class="h50"></div>
 <div id="nav">
     <nav class="nav">
-        <div class="logo">智游教育</div>
+        <div class="logo">欢迎进入我的世界</div>
         <!--<div class="title">注册</div>-->
         <div class="user">
             <span><span class="glyphicon glyphicon-plus"></span>&nbsp;提问&nbsp;</span>
@@ -40,7 +40,7 @@
 
 <main>
     <ul class="messages">
-        <li class="ask"><img src="images/a1.jpg" alt="" class="user-photo" width="64px" height="64px"/>
+        <li class="ask"><img src="uploads/admin.jpg" alt="" class="user-photo" width="64px" height="64px"/>
 
             <h2 class="h2-title">孙大佐</h2>
 
@@ -72,20 +72,25 @@
         } else {
             $('span:eq(4)').html($.cookie('user'))
         }
+
         (function () {
             $.post('Jqindex/ask', function (res, statusText, xhr) {
                 if (statusText == 'success') {
-                    var ask = res;
-                    console.log(res);
-//                    console.log(ask[1].name);
-//                    for (i in ask) {
-//                        $('.messages').append('<li class="ask">' + '<img src="" class="user-photo">' + '<h2 class="h2-title">' + ask[i].name + '</h2>' + '<p class="ptext">' + ask[i].ask + '</p>' + '<p class="ptime">' + ask[i].time + '</p>' + '</li>')
-//                    }
+                    console.log(res.data);
+                    var ask = res.data;
+                    var html = '';
+//                    ask.forEach(function (ele, inde) {
+//                        html = html + '<li class="ask" data-time="' + ele.time + '">' + '<img src="../uploads/"' + ele.name + '".jpg" class="user-photo">' + '<h2 class="h2-title">' + ele.name + '</h2>' + '<p class="ptext">' + ele.ask + '</p>' + '<p class="ptime">' + ele.time + '</p>' + '</li>'
+//                    })
+//                    $('.messages').html();
+                    for (i in ask) {
+                        $('.messages').append('<li class="ask" data-time="' + ask[i].time + '">' + '<img src="uploads/' + ask[i].name + '.jpg" class="user-photo">' + '<h2 class="h2-title">' + ask[i].name + '</h2>' + '<p class="ptext">' + ask[i].ask + '</p>' + '<p class="ptime">' + ask[i].time + '</p>' + '</li>')
+                    }
                 }
             })
         })()
         $('span:eq(0)').click(function () {
-            if ($.cookie('user') == 'null') {
+            if ($.cookie.length == 0) {
                 location.href = 'register.html'
             } else {
                 location.href = 'request.html';
