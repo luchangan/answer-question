@@ -61,48 +61,6 @@
 
             <p class="ptime">2016-10-10 16:25</p>
         </li>
-        <li class="ask"><img src="images/a1.jpg" alt="" class="user-photo" width="64px" height="64px"/>
-
-            <h2 class="h2-title">孙大佐</h2>
-
-            <p class="ptext">正在学习html5 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis commodi,
-                consequatur dignissimos dolore dolorem eaque enim eum excepturi facilis fugiat harum id inventore, ipsam
-                magni maxime nemo numquam officia quasi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                atque beatae blanditiis, consequuntur doloremque earum eveniet fuga illum minus nam necessitatibus
-                officiis pariatur possimus praesentium quidem reiciendis rerum suscipit veritatis.</p>
-
-            <p class="ptime">2016-10-11-16-23</p>
-        </li>
-        <li class="answer"><img src="images/a7.jpg" alt="" class="user-photo"/>
-
-            <h2 class="h2-title">cy</h2>
-
-            <p class="ptext">
-                唐墨宋砚的磨出了岁月的沉香，诗篇的缠绵悱恻，演绎着一季季的繁华。月落花开，西厢梅影，夜已阑珊时，一言旧难歌；醉酒残烛，惜弄江南，飘染了一世的残躯，揉入了多少的无言。铁马难写，剑亦难观，北望燕然，淘尽风流，让我醉在这唐宋元明清，享尽那一世难尽的余韵。</p>
-
-            <p class="ptime">2016-10-10 16:25</p>
-        </li>
-        <li class="ask"><img src="images/a1.jpg" alt="" class="user-photo" width="64px" height="64px"/>
-
-            <h2 class="h2-title">孙大佐</h2>
-
-            <p class="ptext">正在学习html5 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis commodi,
-                consequatur dignissimos dolore dolorem eaque enim eum excepturi facilis fugiat harum id inventore, ipsam
-                magni maxime nemo numquam officia quasi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                atque beatae blanditiis, consequuntur doloremque earum eveniet fuga illum minus nam necessitatibus
-                officiis pariatur possimus praesentium quidem reiciendis rerum suscipit veritatis.</p>
-
-            <p class="ptime">2016-10-11-16-23</p>
-        </li>
-        <li class="answer"><img src="images/a7.jpg" alt="" class="user-photo"/>
-
-            <h2 class="h2-title">cy</h2>
-
-            <p class="ptext">
-                唐墨宋砚的磨出了岁月的沉香，诗篇的缠绵悱恻，演绎着一季季的繁华。月落花开，西厢梅影，夜已阑珊时，一言旧难歌；醉酒残烛，惜弄江南，飘染了一世的残躯，揉入了多少的无言。铁马难写，剑亦难观，北望燕然，淘尽风流，让我醉在这唐宋元明清，享尽那一世难尽的余韵。</p>
-
-            <p class="ptime">2016-10-10 16:25</p>
-        </li>
     </ul>
 </main>
 </body>
@@ -118,10 +76,11 @@
             $.post('Jqindex/ask', function (res, statusText, xhr) {
                 if (statusText == 'success') {
                     var ask = res;
+                    console.log(res);
 //                    console.log(ask[1].name);
-                    for (i in ask) {
-                        $('.messages').append('<li class="ask">' + '<img src="" class="user-photo">' + '<h2 class="h2-title">' + ask[i].name + '</h2>' + '<p class="ptext">' + ask[i].ask + '</p>' + '<p class="ptime">' + ask[i].time + '</p>' + '</li>')
-                    }
+//                    for (i in ask) {
+//                        $('.messages').append('<li class="ask">' + '<img src="" class="user-photo">' + '<h2 class="h2-title">' + ask[i].name + '</h2>' + '<p class="ptext">' + ask[i].ask + '</p>' + '<p class="ptime">' + ask[i].time + '</p>' + '</li>')
+//                    }
                 }
             })
         })()

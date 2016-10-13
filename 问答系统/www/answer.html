@@ -40,5 +40,26 @@
 </div>
 </body>
 <script type="text/javascript">
+    $(function () {
+        $('span').click(function () {
+            location.href = 'index.html';
+        })
+        console.log($.cookie('user'));
+        $('button').click(function () {
+            var name = $.cookie('user')
+            var answer = $('textarea').val();
+            console.log(name);
+            if (answer.length == '0') {
+                $.popup('提交的内容不能为空，请输入');
+            } else {
+                $.post('/Jqanswer', 'name=' + name + '&answer=' + answer, function (res,statsuText,xhr) {
+                    if(statsuText=='success'){
+//                        location.href='index.html';
+                        console.log(res);
+                    }
+                })
+            }
+        })
+    })
 </script>
 </html>
