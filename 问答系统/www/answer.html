@@ -34,7 +34,9 @@
         <div class="form-group">
             <textarea class="form-control" name="" id="" cols="30" rows="10" placeholder="请详细填写回答内容"></textarea>
         </div>
-
+        <div class="form-group">
+            <!--<input type="submit" class="btn btn-block btn-success" value="提交回答"/>-->
+        </div>
     </form>
     <button class="btn btn-block btn-success">提交回答</button>
 </div>
@@ -48,16 +50,26 @@
         $('button').click(function () {
             var name = $.cookie('user')
             var answer = $('textarea').val();
+            var question = $.cookie('question')
             console.log(name);
-            if (answer.length == '0') {
-                $.popup('提交的内容不能为空，请输入');
-            } else {
-                $.post('/Jqanswer', 'name=' + name + '&answer=' + answer, function (res,statsuText,xhr) {
-                    if(statsuText=='success'){
-//                        location.href='index.html';
-                        console.log(res);
-                    }
+            console.log(question)
+            if (name.length == 0) {
+                $.popup('请先登录', function () {
+                    location.href = 'login.html';
                 })
+            } else {
+                if (answer.length == '0') {
+                    $.popup('提交的内容不能为空，请输入');
+                } else {
+                    $.post('/Jqanswer', 'name=' + name + '&answer=' + answer+'&question='+question , function (res, statsuText, xhr) {
+                        if (statsuText == 'success') {
+                            console.log(res);
+                            $.popup('回答成功', function () {
+                                location.href='index.html';
+                            });
+                        }
+                    })
+                }
             }
         })
     })

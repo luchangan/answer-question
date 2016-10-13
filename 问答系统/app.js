@@ -119,14 +119,15 @@ app.post('/Jqindex/ask', function (req, res) {
     var questions = []
     var obj = [];
     fs.readdir('questions', function (err, files) {
-        console.log(files);
+//        console.log(files);
         if (!err) {
             // 排序
-            files.sort();
+            files.reverse();
             // 玄幻读取文件里的内容，加入questions数组中
             files.forEach(function (file) {
                 fs.readFile('questions/' + file, function (err, data) {
                     var str = data.toString().trim();
+                    console.log(file);
                     obj = JSON.parse(str);
                     questions.push(obj);
                     if(questions.length==files.length){
@@ -144,8 +145,9 @@ app.post('/Jqindex/ask', function (req, res) {
 // 提交问题
 app.post('/Jqask', function (req, res) {
     var date = new Date()
-    req.body.time = date.toLocaleDateString() + " " + date.toLocaleTimeString();
+//    req.body.time = date.toLocaleDateString() + " " + date.toLocaleTimeString();
     var ask = req.body.ask;
+    req.body.time=date.getTime();
     var reg1 = /</mg;
     var reg2 = />/mg;
     ask = ask.replace(reg1, '&lt;');
@@ -170,10 +172,25 @@ app.post('/Jqanswer', function (req, res) {
     answer = answer.replace(reg2, '&gt;');
     var user = req.body;
     var userStr = JSON.stringify(user);
-//    console.log(userStr);
-    res.status(200).send('nihao')
-    var usersStr = JSON.parse('[' + userStr + ']');
-    console.log(usersStr)
+    console.log(user)
+    fs.readFile('questions/'+user.question+'.txt',function(err,data){
+        var arr = data.toString().trim();
+        // 问题的对象
+        var askObj = JSON.parse(arr);
+        console.log(askObj)
+
+        if((typeof (askObj.user))=='object'){
+            askObj.user.push(user);
+        }else{
+            askObj.user =[];
+            askObj.user.push(user);
+        }
+        console.log(typeof (askObj.user));
+        console.log(askObj.user);
+        fs.writeFile('questions/'+user.question+'.txt', JSON.stringify(askObj),function (err, data) {
+            res.status(200).send('成功');
+        })
+    })
 })
 
 // 上传图片
